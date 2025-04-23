@@ -9,16 +9,16 @@
 # =============================================================================
 
 
-# Install dbt tool and make a directory and move into the directory
+### Install dbt tool and make a directory and move into the directory
 > pip install dbt-clickhouse
 > mkdir dbt
 > cd dbt
 
 
 
-# Initialize a directory for new and edit a profile
-# Database to connect and use database(imdb_dbt)
-# Validate the profile
+### Initialize a directory for new and edit a profile
+### Database to connect and use database(imdb_dbt)
+### Validate the profile
 
 > dbt init imdb
 > vi ~/.dbt/profiles.yml
@@ -41,7 +41,7 @@ clickhouse_imdb:        <= here, name
 
 
 
-# Init working environment
+### Init working environment
 > cd imdb
 > vi dbt_project.yml
 
@@ -87,9 +87,9 @@ models:
 
 
 
-# Create two files(schema: yml , dml: sql) for processing
-# schema: refer to database
-# dml: for creating view
+### Create two files(schema: yml , dml: sql) for processing
+### schema: refer to database
+### dml: for creating view
 
 > rm -rf dbt_root_path/models/examples
 > mkdir dbt_root_path/models/actors
@@ -150,7 +150,7 @@ from actor_summary
 > dbt run
 
 
-# Table example (create table)
+### Table example (create table)
 
 > vi actors_summary.sql
 
@@ -190,8 +190,8 @@ from actor_summary
 > dbt run
 
 
-# Another table incremental
-# Run this to test
+### Another table incremental
+### Run this to test
 
 > edit actors_summay.sql
 ```
@@ -235,7 +235,7 @@ where id > (select max(id) from {{ this }}) or updated_at > (select max(updated_
 > dbt run
 
 
-# insert a new data  like below
+### insert a new data  like below
 
 ```
 INSERT INTO imdb.actors VALUES (845466, 'Clicky', 'McClickHouse', 'M');
@@ -247,7 +247,7 @@ LIMIT 910 OFFSET 10000;
 ```
 
 
-# Test - Append only mode
+### Test - Append only mode
 
 ```
 {{ config(order_by='(updated_at, id, name)', engine='MergeTree()', materialized='incremental', unique_key='id', incremental_strategy='append') }}
