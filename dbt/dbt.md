@@ -1,24 +1,24 @@
-### =============================================================================
-### Title: dbt(data build tool)
-### Writer: Ted Jung
-### Created: 23, Apr 2025
-### Updated: 23, Apr 2025
-### Description: 
-###   Data build tool for ELT(especially, Transformation)
-###   Model Schema -> Create a View via dbt
-### =============================================================================
+#### =============================================================================
+#### Title: dbt(data build tool)
+#### Writer: Ted Jung
+#### Created: 23, Apr 2025
+#### Updated: 23, Apr 2025
+#### Description: 
+####   Data build tool for ELT(especially, Transformation)
+####   Model Schema -> Create a View via dbt
+#### =============================================================================
 
 
-### Install dbt tool and make a directory and move into the directory
+##### Install dbt tool and make a directory and move into the directory
 > pip install dbt-clickhouse
 > mkdir dbt
 > cd dbt
 
 
 
-### Initialize a directory for new and edit a profile
-### Database to connect and use database(imdb_dbt)
-### Validate the profile
+#### Initialize a directory for new and edit a profile
+#### Database to connect and use database(imdb_dbt)
+#### Validate the profile
 
 > dbt init imdb
 > vi ~/.dbt/profiles.yml
@@ -41,12 +41,14 @@ clickhouse_imdb:        <= here, name
 
 
 
-### Init working environment
-> cd imdb
-> vi dbt_project.yml
+#### Init working environment
 
 ```
+> cd imdb
+> vi dbt_project.yml
+```
 
+```
 # Name your project! Project names should contain only lowercase characters and underscores. 
 # A good package name should reflect your organization's name or the intended use of these models
 name: 'imdb'
@@ -66,35 +68,34 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
-clean-targets:         # directories to be removed by `dbt clean`
+clean-targets:         #### directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
-
 # In this example config, we tell dbt to build all models in the example/
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
   imdb:
-    # Config indicated by + and applies to all files under models/actors/
+    #### Config indicated by + and applies to all files under models/actors/
     actors:
       +materialized: view
 ```
 
 
+#### Create two files(schema: yml , dml: sql) for processing
+#### schema: refer to database
+#### dml: for creating view
 
-
-### Create two files(schema: yml , dml: sql) for processing
-### schema: refer to database
-### dml: for creating view
-
+```
 > rm -rf dbt_root_path/models/examples
 > mkdir dbt_root_path/models/actors
 > cd dbt_root_path/models/actors
 > create schema.yml
+```
 
 ```
 version: 2
@@ -110,7 +111,9 @@ sources:
   - name: movie_directors
 ```
 
+```
 > create actors_summary.sql
+```
 
 ```
 {{ config(materialized='view') }}
@@ -145,14 +148,17 @@ select *
 from actor_summary
 ```
 
-
+```
 > vi dbt_project.yml
 > dbt run
+```
 
 
-### Table example (create table)
+#### Table example (create table)
 
+```
 > vi actors_summary.sql
+```
 
 ```
 {{ config(order_by='(updated_at, id, name)', engine='MergeTree()', materialized='table') }}
@@ -187,13 +193,17 @@ select *
 from actor_summary
 ```
 
+```
 > dbt run
+```
 
+#### Another table incremental
+#### Run this to test
 
-### Another table incremental
-### Run this to test
-
+```
 > edit actors_summay.sql
+```
+
 ```
 {{ config(order_by='(updated_at, id, name)', engine='MergeTree()', materialized='incremental', unique_key='id') }}
 with actor_summary as (
@@ -232,10 +242,11 @@ where id > (select max(id) from {{ this }}) or updated_at > (select max(updated_
 {% endif %}
 ```
 
+```
 > dbt run
+```
 
-
-### insert a new data  like below
+#### insert a new data  like below
 
 ```
 INSERT INTO imdb.actors VALUES (845466, 'Clicky', 'McClickHouse', 'M');
@@ -247,13 +258,15 @@ LIMIT 910 OFFSET 10000;
 ```
 
 
-### Test - Append only mode
+#### Test - Append only mode
 
 ```
 {{ config(order_by='(updated_at, id, name)', engine='MergeTree()', materialized='incremental', unique_key='id', incremental_strategy='append') }}
 ```
 
+```
 > dbt run
+```
 
 ```
 INSERT INTO imdb.actors VALUES (845467, 'Danny', 'DeBito', 'M');
@@ -266,4 +279,6 @@ LIMIT 920 OFFSET 10000;
 SELECT * FROM imdb_dbt.actors_summary ORDER BY num_movies DESC LIMIT 3;
 ```
 
+```
 > dbt run
+```
