@@ -10,18 +10,22 @@
 
 
 ##### Install dbt tool and make a directory and move into the directory
+
+```
 > pip install dbt-clickhouse
 > mkdir dbt
 > cd dbt
-
+```
 
 
 #### Initialize a directory for new and edit a profile
 #### Database to connect and use database(imdb_dbt)
 #### Validate the profile
 
+```
 > dbt init imdb
 > vi ~/.dbt/profiles.yml
+```
 
 ```
 clickhouse_imdb:        <= here, name
