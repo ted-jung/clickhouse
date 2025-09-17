@@ -182,8 +182,6 @@ SETTINGS index_granularity=8192;
 
 
 ## CASE4 Dedup
- * 
- */
  
 ```
 SELECT * from system.clusters;
@@ -205,8 +203,6 @@ SETTINGS index_granularity = 8192;
 
 
 ## CASE5 go-client
- *
- */
 ```
 SELECT * FROM tedbase1.repl_aws_cmp_aggregation;
 SELECT * FROM tedbase1.repl_aws_cmp_aggregation limit 10;
