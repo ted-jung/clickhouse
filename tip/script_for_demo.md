@@ -144,7 +144,7 @@ CREATE VIEW IF NOT EXISTS tedbase3.view_repl_aws_cmp_aggregation ON CLUSTER 'ted
 SELECT COUNT(*) FROM tedbase3.view_repl_aws_cmp_aggregation vraca ;
 
 ```		
-```
+
 	
 
 	
