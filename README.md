@@ -12,7 +12,7 @@
 
 
 
-## ClickHouse as a vector database: 
+## ClickHouse as a vector database (AI): 
 
 1. What are Vectors and why are they important?
 
