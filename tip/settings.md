@@ -37,6 +37,14 @@ If an ORDER BY clause requires sorting a result set that is too large to fit in 
 
 
 
-### merge
+### Merge
 
-1. merge_with_ttl_timeout = 10
+#### TTL 
+
+1. merge_with_ttl_timeout=10  (default 14400, 4 hours)
+   : use SETTINGS to change value when create a table
+```
+    CREATE TABLE
+    ~~~
+    SETTINGS merge_with_ttl_timeout=1200   (do not set <300)
+``
