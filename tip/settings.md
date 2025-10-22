@@ -34,3 +34,9 @@ If an ORDER BY clause requires sorting a result set that is too large to fit in 
 ```
 
 3. Complex or large JOIN operations (especially with the default HASH algorithm) can spill the right-side table to disk if it exceeds the allocated memory limit.
+
+
+
+### merge
+
+1. merge_with_ttl_timeout = 10
