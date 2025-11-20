@@ -1,3 +1,4 @@
+## how to install(mac)
 > brew install minio/stable/minio
 > minio server /Users/tedj/Ted-lab/minio/data --address ":9100" --console-address ":9101"
 
@@ -51,3 +52,36 @@ EXAMPLES:
            --sftp="address=:8022" --sftp="ssh-private-key=${HOME}/.ssh/id_rsa"
 ```
 
+## create a policy(json)
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketLocation" 
+            ],
+            "Resource": [
+                "arn:aws:s3:::*"
+            ],
+            "Sid": "AllowListingAllBuckets"
+        }
+    ]
+}
+```
+
+## add a user
+
+```
+  > mc admin user add tedminio/ ted password
+  > mc admin user ls tedminio
+  > mc admin user info tedminio ted
+  > mc admin policy set tedminio list-buckets-only user=ted
+  > mc admin policy attach tedminio readwrite --user ted
+  > mc admin accesskey ls tedminio ted
+  > cat ted_list_buckets_policy.json
+  > mc admin accesskey create tedminio/ ted --access-key tedaccesskey --secret-key tedsecretkey --policy ./ted_list_buckets_policy.json
+```
