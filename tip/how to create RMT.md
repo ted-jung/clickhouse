@@ -47,9 +47,8 @@ CREATE TABLE my_db.my_table ON CLUSTER cluster1
 ENGINE = ReplicatedMergeTree('/clickhouse/tables/my_table/{shard}', '{replica}')
 ORDER BY (..)
 
-CREATE TABLE my_distributed_table
-   AS my_db.my_table
-   ENGINE=Distributed(cluster1, my_db, my_table, rand())
+CREATE TABLE my_distributed_table AS my_db.my_table
+ENGINE=Distributed(cluster1, my_db, my_table, rand())
 ```
 
 
