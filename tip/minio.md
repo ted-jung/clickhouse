@@ -85,3 +85,44 @@ EXAMPLES:
   > cat ted_list_buckets_policy.json
   > mc admin accesskey create tedminio/ ted --access-key tedaccesskey --secret-key tedsecretkey --policy ./ted_list_buckets_policy.json
 ```
+
+## How to add a new user
+
+```
+    > mc admin user add tedminio/ ted magicword
+    > mc admin user ls tedminio
+    > mc admin user info tedminio ted
+```
+
+## How to handle policy (Minio Policy-Based Access Control)
+## Attach policies to either user or group
+
+```
+    > mc admin policy create tedminio list-buckets-only ~/Ted-lab/minio/ted_list_buckets_policy.json
+    > mc admin policy attach set tedminio list-buckets-only user=ted
+    > mc admin policy attach tedminio list-buckets-only user=ted
+    > mc admin policy attach tedminio ted_list-buckets-only user=ted
+    > mc admin policy attach tedminio readwrite --user ted
+    > mc admin policy ls tedminio
+    > mc admin policy info tedminio
+```
+
+## How to create keys for user
+
+```
+    > mc admin accesskey ls tedminio ted
+    > mc admin accesskey create tedminio/ ted --access-key tedaccesskey --secret-key tedsecretkey --policy ./ted_list_buckets_policy.json
+```
+
+
+# Step3: How to select/insert
+
+```
+> SELECT *
+    FROM s3('http://localhost:9100/ted-bucket/aapl_stock.csv','minioadmin','minioadmin','CSVWithNames')
+   LIMIT 3;
+
+
+> INSERT INTO FUNCTION s3('http://localhost:9100/ted-bucket/test-data.csv.gz', 'minioadmin','minioadmin','CSV', 'name String, value UInt32', 'gzip')
+  VALUES ('test-data', 1), ('test-data-2', 2);
+```
