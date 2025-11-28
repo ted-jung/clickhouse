@@ -1,26 +1,27 @@
 ### Create table and distributed Table with Macro
 
-need to define macro first on each clickhouse hosts like below
+Need to define macro first on each clickhouse hosts like below
+
 ```
-host1
+- host1
 <macros>
     <shard>01</shard>
     <replica>01</replica>
 </macros>
 
-host3
+- host3
 <macros>
     <shard>01</shard>
     <replica>02</replica>
 </macros>
 
-host2
+- host2
 <macros>
     <shard>02</shard>
     <replica>01</replica>
 </macros>
 
-host4
+- host4
 <macros>
     <shard>02</shard>
     <replica>02</replica>
@@ -30,14 +31,14 @@ host4
 
 ```
 
-create database and check
+Create Database and see
 ```
 CREATE DATABASE my_db ON CLUSTER cluster1;
 
 SHOW databases;
 ```
 
-create table and distributed table
+Create a table on top of cluster and create a distributed table
 
 ```
 CREATE TABLE my_db.my_table ON CLUSTER cluster1
@@ -52,17 +53,21 @@ ENGINE=Distributed(cluster1, my_db, my_table, rand())
 ```
 
 
-download file for testing...and load it..
+Download a file for testing and load it.
 
 ```
-clickhouse-client --time --query "INSERT INTO my-db.hits_distributed FORMAT TSV" < hits.tsv
+> clickhouse-client --time --query "INSERT INTO my-db.hits_distributed FORMAT TSV" < hits.tsv
 
 > SELECT formatReadableQuantity(count()) FROM my_db.hits_distributed;
 > SELECT formatReadableQuantity(count()) FROM mydb.hits;
 
 > SELECT URL, COUNT(*) AS PageViews
     FROM my_db.hits_distributed
-   WHERE (CounterID = 62) AND (EventDate >='2013-07-01') AND (EventDate <='2013-07-31') AND (DontCountHits = 0) AND (IsRefresh = 0)
+   WHERE (CounterID = 62)
+     AND (EventDate >='2013-07-01')
+     AND (EventDate <='2013-07-31')
+     AND (DontCountHits = 0)
+     AND (IsRefresh = 0)
      ADN (URL != '')
    GROUP BY URL
    ORDER BY PageViews DESC
