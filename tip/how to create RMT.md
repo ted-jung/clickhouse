@@ -1,4 +1,4 @@
-### Create table and distributed Table with Macro
+### Create a Table and a Distributed-Table with Macro
 
 Need to define macro first on each clickhouse hosts like below
 
@@ -30,6 +30,9 @@ Need to define macro first on each clickhouse hosts like below
 > SELECT * FROM system.macros;
 
 ```
+
+By default, the CREATE, DROP, ALTER, and RENAME queries affect only the current server where they are executed.
+In a cluster setup, it is possible to run such queries in a distributed manner with the ON CLUSTER clause.
 
 Create Database and see
 ```
