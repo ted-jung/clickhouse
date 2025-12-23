@@ -824,14 +824,14 @@
                 <replica>
                     <host>ted-ch1</host>
                     <port>9000</port>
-		    <user>ted</user>
-           	    <password>password</password>
+		    		<user>ted</user>
+           	    	<password>password</password>
                 </replica>
                 <replica>
                     <host>ted-ch2</host>
                     <port>9000</port>
-		    <user>ted</user>
-           	    <password>password</password>
+		    		<user>ted</user>
+           	    	<password>password</password>
                 </replica>
             </shard>
             <shard>
@@ -839,14 +839,14 @@
                 <replica>
                     <host>ted-ch3</host>
                     <port>9000</port>
-		    <user>ted</user>
-           	    <password>password</password>
+		    		<user>ted</user>
+           	    	<password>password</password>
                 </replica>
                 <replica>
                     <host>ted-ch4</host>
                     <port>9000</port>
-		    <user>ted</user>
-           	    <password>password</password>
+		    		<user>ted</user>
+           	    	<password>password</password>
                 </replica>
             </shard>
         </ted_cluster>
@@ -857,9 +857,9 @@
                     <port>9000</port>
                     <user>ted</user>
                     <password>password</password>
-	        </replica>
-	    </shard>
-	    <shard>
+	        	</replica>
+	    	</shard>
+	    	<shard>
                 <replica>
                     <host>ted-ch2</host>
                     <port>9000</port>
@@ -874,8 +874,8 @@
                     <user>ted</user>
                     <password>password</password>
                 </replica>
-	    </shard>
-	    <shard>
+	    	</shard>
+	    	<shard>
                 <replica>
                     <host>ted-ch4</host>
                     <port>9000</port>
@@ -889,34 +889,34 @@
                 <replica>
                     <host>ted-ch3</host>
                     <port>9000</port>
-		    <user>ted</user>
+		    		<user>ted</user>
                     <password>password</password>
                 </replica>
-	    </shard>
-	    <shard>
+	    	</shard>
+	    	<shard>
                 <replica>
                     <host>ted-ch4</host>
                     <port>9000</port>
-		    <user>ted</user>
-		    <password>password</password>
+		    		<user>ted</user>
+		    		<password>password</password>
                 </replica>
             </shard>
         </ted_cluster3>
-	<cluster_2S_1R>
+		<cluster_2S_1R>
             <shard>
                 <replica>
                     <host>ted-ch1</host>
                     <port>9000</port>
-		    <user>ted</user>
-		    <password>password</password>
+		    		<user>ted</user>
+		    		<password>password</password>
                 </replica>
             </shard>
             <shard>
                 <replica>
                     <host>ted-ch2</host>
                     <port>9000</port>
-		    <user>ted</user>
-		    <password>password</password>
+				    <user>ted</user>
+				    <password>password</password>
                 </replica>
             </shard>
         </cluster_2S_1R>
