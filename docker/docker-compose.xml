@@ -1,0 +1,33 @@
+services:
+  ch-node-1:
+    image: clickhouse/clickhouse-server:latest
+    container_name: ch-node-1
+    hostname: ch-node-1
+    volumes:
+      - ./config/listen.xml:/etc/clickhouse-server/config.d/listen.xml
+      - ./config/remote_servers.xml:/etc/clickhouse-server/config.d/remote_servers.xml
+      - ./config/keeper.xml:/etc/clickhouse-server/config.d/keeper.xml
+    environment:
+      - CLICKHOUSE_KEEPER_ID=1
+
+  ch-node-2:
+    image: clickhouse/clickhouse-server:latest
+    container_name: ch-node-2
+    hostname: ch-node-2
+    volumes:
+      - ./config/listen.xml:/etc/clickhouse-server/config.d/listen.xml
+      - ./config/remote_servers.xml:/etc/clickhouse-server/config.d/remote_servers.xml
+      - ./config/keeper.xml:/etc/clickhouse-server/config.d/keeper.xml
+    environment:
+      - CLICKHOUSE_KEEPER_ID=2
+
+  ch-node-3:
+    image: clickhouse/clickhouse-server:latest
+    container_name: ch-node-3
+    hostname: ch-node-3
+    volumes:
+      - ./config/listen.xml:/etc/clickhouse-server/config.d/listen.xml
+      - ./config/remote_servers.xml:/etc/clickhouse-server/config.d/remote_servers.xml
+      - ./config/keeper.xml:/etc/clickhouse-server/config.d/keeper.xml
+    environment:
+      - CLICKHOUSE_KEEPER_ID=3
