@@ -1,6 +1,9 @@
 services:
   ch-node-1:
     image: clickhouse/clickhouse-server:latest
+    ports:
+      - "8123:8123" # Host 8123 -> Container 8123
+      - "9000:9000" # Host 9000 -> Container 9000
     container_name: ch-node-1
     hostname: ch-node-1
     volumes:
@@ -12,6 +15,9 @@ services:
 
   ch-node-2:
     image: clickhouse/clickhouse-server:latest
+    ports:
+      - "8124:8124" # Host 8124 -> Container 8123
+      - "9001:9001" # Host 9001 -> Container 9000
     container_name: ch-node-2
     hostname: ch-node-2
     volumes:
@@ -23,6 +29,9 @@ services:
 
   ch-node-3:
     image: clickhouse/clickhouse-server:latest
+    ports:
+      - "8125:8125" # Host 8125 -> Container 8123
+      - "9000:9002:" # Host 9002 -> Container 9000
     container_name: ch-node-3
     hostname: ch-node-3
     volumes:
