@@ -11,13 +11,13 @@
             <shard>
                 <replica>
                     <host>ch-node-2</host>
-                    <port>9000</port>
+                    <port>9001</port>
                 </replica>
             </shard>
             <shard>
                 <replica>
                     <host>ch-node-3</host>
-                    <port>9000</port>
+                    <port>9002</port>
                 </replica>
             </shard>
         </my_cluster>
