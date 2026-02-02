@@ -67,10 +67,12 @@ resource "clickhouse_service" "service" {
     allowed_origins = null
   }
 
-  # Custom Tags Block
+
+  # Custom Tags Block (key:value)
   tags = {
-      key   = "environment"
-      value = "production"
+      environment = "production",
+      team = "data-science",
+      cost-center= "1024"
   }
 
   min_replica_memory_gb = 8
