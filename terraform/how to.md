@@ -17,9 +17,13 @@ The ClickHouse service is available from anywhere.
 ## List services 
 
 ```
-  > curl -u "zSFz9suUxiweYB6zo5cc:4b1dZjm6fYt9wg64zVpSyRxfajrOCjzXsfAJIncElx" \
+  > curl -u "---:---" \
     https://api.clickhouse.cloud/v1/organizations/e9a6abbe-a955-48e5-9f4b-d1ef506ed9f5/services | \
     jq '.result[] | select(.region == "ap-northeast-2" and .tags[].value=="environment")'
+
+
+  > curl -u "---:---" \
+  https://api.clickhouse.cloud/v1/organizations/e9a6abbe-a955-48e5-9f4b-d1ef506ed9f5/services | jq '.result[] | select(.region == "ap-northeast-2" and (.tags[]? | select(.key =="environment" and .value=="production")))'
 ```
 
 
