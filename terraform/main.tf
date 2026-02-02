@@ -67,6 +67,12 @@ resource "clickhouse_service" "service" {
     allowed_origins = null
   }
 
+  # Custom Tags Block
+  tags = {
+      key   = "environment"
+      value = "production"
+  }
+
   min_replica_memory_gb = 8
   max_replica_memory_gb = 16
 
