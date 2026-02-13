@@ -1,12 +1,12 @@
-# =============================================================================
-# Title: Materialzed View
-# Writter: Ted,Jung
-# Date: 13, Feb 2026
-# Created: 13, Feb 2026
-# Updated: 13, Feb 2026
-# Description: The use case of each MV features
-#       Engine: MergeTree or *ReplicatedMergeTree
-# =============================================================================
+## =============================================================================
+## Title: Materialzed View
+## Writter: Ted,Jung
+## Date: 13, Feb 2026
+## Created: 13, Feb 2026
+## Updated: 13, Feb 2026
+## Description: The use case of each MV features
+##       Engine: MergeTree or *ReplicatedMergeTree
+## =============================================================================
 
 
 
